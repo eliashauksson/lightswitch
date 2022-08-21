@@ -28,6 +28,6 @@ super + alt + c
 For Kitty to work add these lines to the conf
 
 ```
-allow_remote_contorl yes
+allow_remote_control yes
 listen_on unix:/tmp/kitty
 ```
