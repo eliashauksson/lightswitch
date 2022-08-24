@@ -9,5 +9,7 @@ if ! command -v bb &> /dev/null; then
 fi
 
 # copy file to ~/.local/share/lightswitch
-mkdir ~/.local/share/lightswitch
+if [ ! -d ~/.local/share/lightswitch ]; then
+    mkdir ~/.local/share/lightswitch
+fi
 cp switch-theme.clj ~/.local/share/lightswitch/.
