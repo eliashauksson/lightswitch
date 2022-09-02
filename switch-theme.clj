@@ -52,20 +52,20 @@
 (change-in-file emacs-config-path
                 emacs-config-data
                 "load-theme"
-                "  (load-theme 'doom-nord-light t))"
-                "  (load-theme 'doom-nord t))")
+                "  (load-theme 'doom-ayu-light t))"
+                "  (load-theme 'doom-ayu-mirage t))")
 
 (change-in-file kitty-config-path
                 kitty-config-data
                 "include"
-                "include one-light.conf"
-                "include nord.conf")
+                "include ayu-light.conf"
+                "include ayu-dark.conf")
 
 (change-in-file polybar-config-path
                 polybar-config-data
                 "-theme.ini"
-                "include-file = $HOME/.config/polybar/nord-light-theme.ini"
-                "include-file = $HOME/.config/polybar/nord-theme.ini")
+                "include-file = $HOME/.config/polybar/ayu-light-theme.ini"
+                "include-file = $HOME/.config/polybar/ayu-dark-theme.ini")
 
 ;; reload emacs config for all running emacs instances
 (shell/sh "emacsclient" "-e"
