@@ -7,6 +7,7 @@ Supported Apps:
 - [Emacs](https://www.gnu.org/software/emacs/)
 - [Kitty](https://sw.kovidgoyal.net/kitty/)
 - [Polybar](https://polybar.github.io/)
+- [Rofi](https://github.com/davatorium/rofi)
 
 ## Install
 
