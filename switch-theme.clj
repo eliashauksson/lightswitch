@@ -13,6 +13,8 @@
   (str (System/getenv "HOME") "/.config/kitty/kitty.conf"))
 (def polybar-config-path
   (str (System/getenv "HOME") "/.config/polybar/config.ini"))
+(def rofi-config-path
+  (str (System/getenv "HOME") "/.config/rofi/config.rasi"))
 
 ;; read the files and save them line by line in a list
 (def emacs-config-data
@@ -21,6 +23,8 @@
   (str/split-lines (slurp kitty-config-path)))
 (def polybar-config-data
   (str/split-lines (slurp polybar-config-path)))
+(def rofi-config-data
+  (str/split-lines (slurp rofi-config-path)))
 
 ;; create colortheme file if it doesn't already exist
 (when (not (fs/exists? colortheme-file-path))
@@ -66,6 +70,12 @@
                 "-theme.ini"
                 "include-file = $HOME/.config/polybar/ayu-light-theme.ini"
                 "include-file = $HOME/.config/polybar/ayu-dark-theme.ini")
+
+(change-in-file rofi-config-path
+                rofi-config-data
+                "@import"
+                "@import \"~/.config/rofi/ayu-light.rasi\""
+                "@import \"~/.config/rofi/ayu-dark.rasi\"")
 
 ;; reload emacs config for all running emacs instances
 (shell/sh "emacsclient" "-e"
