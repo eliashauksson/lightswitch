@@ -5,16 +5,24 @@
 (require '[clojure.java.shell :as shell])
 
 ;; define the paths of the files that need changing
-(def colortheme-file-path
-  (str (System/getenv "HOME") "/.COLORTHEME"))
-(def emacs-config-path
-  (str (System/getenv "HOME") "/.emacs.d/init.el"))
-(def kitty-config-path
-  (str (System/getenv "HOME") "/.config/kitty/kitty.conf"))
-(def polybar-config-path
-  (str (System/getenv "HOME") "/.config/polybar/config.ini"))
-(def rofi-config-path
-  (str (System/getenv "HOME") "/.config/rofi/config.rasi"))
+(let [home (System/getenv "HOME")]
+  (def colortheme-file-path
+    (str home "/.COLORTHEME"))
+  (def emacs-config-path
+    (str home "/.emacs.d/init.el"))
+  (def kitty-config-path
+    (str home "/.config/kitty/kitty.conf"))
+  (def polybar-config-path
+    (str home "/.config/polybar/config.ini"))
+  (def rofi-config-path
+    (str home "/.config/rofi/config.rasi"))
+
+  (def dunst-config-path
+    (str home "/.config/dunst/dunstrc"))
+  (def dunst-dark-config-path
+    (str home "/.config/dunst/dunstrc_dark"))
+  (def dunst-light-config-path
+    (str home "/.config/dunst/dunstrc_light")))
 
 ;; read the files and save them line by line in a list
 (def emacs-config-data
@@ -76,6 +84,14 @@
                 "@import"
                 "@import \"~/.config/rofi/ayu-light.rasi\""
                 "@import \"~/.config/rofi/ayu-dark.rasi\"")
+
+;; change the theme for dunst
+(fs/delete dunst-config-path)
+(shell/sh "killall" "dunst")
+(fs/copy (if (= next-colortheme "LIGHT")
+           dunst-light-config-path
+           dunst-dark-config-path)
+         dunst-config-path)
 
 ;; reload emacs config for all running emacs instances
 (shell/sh "emacsclient" "-e"

@@ -8,8 +8,11 @@ Supported Apps:
 - [Kitty](https://sw.kovidgoyal.net/kitty/)
 - [Polybar](https://polybar.github.io/)
 - [Rofi](https://github.com/davatorium/rofi)
+- [Dunst](https://dunst-project.org/)
 
 ## Install
+
+**Warning** This script has a lot of custom paths and lines which are correct for my personal system. You probably have to change them to match your configurations.
 
 To get started run
 
